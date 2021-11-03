@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaboy.vhr.dao.HrRoleDao">
+
+    <resultMap id="BaseResultMap" type="com.javaboy.vhr.entity.HrRole">
+        <!--@Table hr_role-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="hrid" column="hrid" jdbcType="INTEGER"/>
+        <result property="rid" column="rid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          id, hrid, rid
+        from trader.hr_role
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          id, hrid, rid
+        from trader.hr_role
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          id, hrid, rid
+        from trader.hr_role
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="hrid != null">
+                and hrid = #{hrid}
+            </if>
+            <if test="rid != null">
+                and rid = #{rid}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into trader.hr_role(hrid, rid)
+        values (#{hrid}, #{rid})
+    </insert>
+
+    <insert id="insertHrRole" >
+        insert into hr_role (hrid,rid) values
+        <foreach collection="rids" item="rid" separator=",">
+            (#{hrid},#{rid})
+        </foreach>
+    </insert>
+
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update trader.hr_role
+        <set>
+            <if test="hrid != null">
+                hrid = #{hrid},
+            </if>
+            <if test="rid != null">
+                rid = #{rid},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from trader.hr_role where id = #{id}
+    </delete>
+
+    <!--通过hrid删除-->
+    <delete id="deleteByHrid">
+        delete from hr_role where  hrid = #{hrid}
+    </delete>
+
+</mapper>
