@@ -11,7 +11,7 @@
     </resultMap>
 
     <delete id="deleteAll">
-        delete from trader.position
+        delete from position
         <where>
             id in
             <foreach collection="positions" item="position" separator="," open="(" close=")">
@@ -27,7 +27,7 @@
     <select id="queryById" resultMap="BaseResultMap">
         select
           id, name, createDate, enabled
-        from trader.position
+        from position
         where id = #{id}
     </select>
 
@@ -35,7 +35,7 @@
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
           id, name, createDate, enabled
-        from trader.position
+        from position
         limit #{offset}, #{limit}
     </select>
 
@@ -43,7 +43,7 @@
     <select id="queryAll" resultMap="BaseResultMap">
         select
           id, name, createDate, enabled
-        from trader.position
+        from position
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -62,13 +62,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into trader.position(name, createDate, enabled)
+        insert into position(name, createDate, enabled)
         values (#{name}, #{createdate}, #{enabled})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update trader.position
+        update position
         <set>
             <if test="name != null and name != ''">
                 name = #{name},
@@ -85,7 +85,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from trader.position where id = #{id}
+        delete from position where id = #{id}
     </delete>
 
 </mapper>

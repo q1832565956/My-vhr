@@ -16,7 +16,7 @@
     <select id="queryById" resultMap="BaseResultMap">
         select
           id, eid, appDate, appResult, appContent, remark
-        from trader.appraise
+        from appraise
         where id = #{id}
     </select>
 
@@ -24,7 +24,7 @@
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
           id, eid, appDate, appResult, appContent, remark
-        from trader.appraise
+        from appraise
         limit #{offset}, #{limit}
     </select>
 
@@ -32,7 +32,7 @@
     <select id="queryAll" resultMap="BaseResultMap">
         select
           id, eid, appDate, appResult, appContent, remark
-        from trader.appraise
+        from appraise
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -57,13 +57,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into trader.appraise(eid, appDate, appResult, appContent, remark)
+        insert into appraise(eid, appDate, appResult, appContent, remark)
         values (#{eid}, #{appdate}, #{appresult}, #{appcontent}, #{remark})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update trader.appraise
+        update appraise
         <set>
             <if test="eid != null">
                 eid = #{eid},
@@ -86,7 +86,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from trader.appraise where id = #{id}
+        delete from appraise where id = #{id}
     </delete>
 
 </mapper>

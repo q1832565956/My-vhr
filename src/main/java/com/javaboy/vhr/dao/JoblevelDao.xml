@@ -15,11 +15,11 @@
     <select id="queryById" resultMap="BaseResultMap">
         select
           id, name, titleLevel, createDate, enabled
-        from trader.joblevel
+        from joblevel
         where id = #{id}
     </select>
 <delete id="deleteAll">
-    delete from trader.joblevel
+    delete from joblevel
     <where>
         id in
         <foreach collection="joblevels" close=")" open="(" item="joblevel" separator=",">
@@ -31,7 +31,7 @@
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
           id, name, titleLevel, createDate, enabled
-        from trader.joblevel
+        from joblevel
         limit #{offset}, #{limit}
     </select>
 
@@ -40,7 +40,7 @@
     <select id="queryAll" resultMap="BaseResultMap">
         select
           id, name, titleLevel, createDate, enabled
-        from trader.joblevel
+        from joblevel
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -62,13 +62,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into trader.joblevel(name, titleLevel, createDate, enabled)
+        insert into joblevel(name, titleLevel, createDate, enabled)
         values (#{name}, #{titlelevel}, #{createdate}, #{enabled})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update trader.joblevel
+        update joblevel
         <set>
             <if test="name != null and name != ''">
                 name = #{name},
@@ -88,7 +88,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from trader.joblevel where id = #{id}
+        delete from joblevel where id = #{id}
     </delete>
 
 </mapper>

@@ -65,7 +65,9 @@
        <if test="eName != null and eName != ''" >
           and e.`name` like  CONCAT("%",#{eName},"%")
        </if>
-        limit #{offset}, #{limit}
+       <if test="offset != null and limit != null">
+           limit #{offset}, #{limit}
+       </if>
     </select>
 
     <select id="getTotal" resultType="java.lang.Long">
@@ -78,7 +80,7 @@
     <select id="queryById" resultMap="BaseResultMap">
         select
           id, name, gender, birthday, idCard, wedlock, nationId, nativePlace, politicId, email, phone, address, departmentId, jobLevelId, posId, engageForm, tiptopDegree, specialty, school, beginDate, workState, workID, contractTerm, conversionTime, notWorkDate, beginContract, endContract, workAge
-        from trader.employee
+        from employee
         where id = #{id}
     </select>
 
@@ -86,7 +88,7 @@
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
           id, name, gender, birthday, idCard, wedlock, nationId, nativePlace, politicId, email, phone, address, departmentId, jobLevelId, posId, engageForm, tiptopDegree, specialty, school, beginDate, workState, workID, contractTerm, conversionTime, notWorkDate, beginContract, endContract, workAge
-        from trader.employee
+        from employee
         limit #{offset}, #{limit}
     </select>
 
@@ -94,7 +96,7 @@
     <select id="queryAll" resultMap="BaseResultMap">
         select
           id, name, gender, birthday, idCard, wedlock, nationId, nativePlace, politicId, email, phone, address, departmentId, jobLevelId, posId, engageForm, tiptopDegree, specialty, school, beginDate, workState, workID, contractTerm, conversionTime, notWorkDate, beginContract, endContract, workAge
-        from trader.employee
+        from employee
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -185,13 +187,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into trader.employee(name, gender, birthday, idCard, wedlock, nationId, nativePlace, politicId, email, phone, address, departmentId, jobLevelId, posId, engageForm, tiptopDegree, specialty, school, beginDate, workState, workID, contractTerm, conversionTime, notWorkDate, beginContract, endContract, workAge)
+        insert into employee(name, gender, birthday, idCard, wedlock, nationId, nativePlace, politicId, email, phone, address, departmentId, jobLevelId, posId, engageForm, tiptopDegree, specialty, school, beginDate, workState, workID, contractTerm, conversionTime, notWorkDate, beginContract, endContract, workAge)
         values (#{name}, #{gender}, #{birthday}, #{idcard}, #{wedlock}, #{nationid}, #{nativeplace}, #{politicid}, #{email}, #{phone}, #{address}, #{departmentid}, #{joblevelid}, #{posid}, #{engageform}, #{tiptopdegree}, #{specialty}, #{school}, #{begindate}, #{workstate}, #{workid}, #{contractterm}, #{conversiontime}, #{notworkdate}, #{begincontract}, #{endcontract}, #{workage})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update trader.employee
+        update employee
         <set>
             <if test="name != null and name != ''">
                 name = #{name},
@@ -280,7 +282,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from trader.employee where id = #{id}
+        delete from employee where id = #{id}
     </delete>
 
 </mapper>

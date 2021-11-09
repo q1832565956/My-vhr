@@ -24,7 +24,7 @@
     <select id="queryById" resultMap="BaseResultMap">
         select
           id, basicSalary, bonus, lunchSalary, trafficSalary, allSalary, pensionBase, pensionPer, createDate, medicalBase, medicalPer, accumulationFundBase, accumulationFundPer, name
-        from trader.salary
+        from salary
         where id = #{id}
     </select>
 
@@ -32,7 +32,7 @@
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
           id, basicSalary, bonus, lunchSalary, trafficSalary, allSalary, pensionBase, pensionPer, createDate, medicalBase, medicalPer, accumulationFundBase, accumulationFundPer, name
-        from trader.salary
+        from salary
         limit #{offset}, #{limit}
     </select>
 
@@ -40,7 +40,7 @@
     <select id="queryAll" resultMap="BaseResultMap">
         select
           id, basicSalary, bonus, lunchSalary, trafficSalary, allSalary, pensionBase, pensionPer, createDate, medicalBase, medicalPer, accumulationFundBase, accumulationFundPer, name
-        from trader.salary
+        from salary
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -89,13 +89,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into trader.salary(basicSalary, bonus, lunchSalary, trafficSalary, allSalary, pensionBase, pensionPer, createDate, medicalBase, medicalPer, accumulationFundBase, accumulationFundPer, name)
+        insert into salary(basicSalary, bonus, lunchSalary, trafficSalary, allSalary, pensionBase, pensionPer, createDate, medicalBase, medicalPer, accumulationFundBase, accumulationFundPer, name)
         values (#{basicsalary}, #{bonus}, #{lunchsalary}, #{trafficsalary}, #{allsalary}, #{pensionbase}, #{pensionper}, #{createdate}, #{medicalbase}, #{medicalper}, #{accumulationfundbase}, #{accumulationfundper}, #{name})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update trader.salary
+        update salary
         <set>
             <if test="basicsalary != null">
                 basicSalary = #{basicsalary},
@@ -142,7 +142,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from trader.salary where id = #{id}
+        delete from salary where id = #{id}
     </delete>
 
 </mapper>

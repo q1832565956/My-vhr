@@ -100,7 +100,7 @@
     <select id="queryById" resultMap="BaseResultMap">
         select
           id, url, path, component, name, iconCls, keepAlive, requireAuth, parentId, enabled
-        from trader.menu
+        from menu
         where id = #{id}
     </select>
 
@@ -108,7 +108,7 @@
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
           id, url, path, component, name, iconCls, keepAlive, requireAuth, parentId, enabled
-        from trader.menu
+        from menu
         limit #{offset}, #{limit}
     </select>
 
@@ -116,7 +116,7 @@
     <select id="queryAll" resultMap="BaseResultMap">
         select
           id, url, path, component, name, iconCls, keepAlive, requireAuth, parentId, enabled
-        from trader.menu
+        from menu
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -153,13 +153,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into trader.menu(url, path, component, name, iconCls, keepAlive, requireAuth, parentId, enabled)
+        insert into menu(url, path, component, name, iconCls, keepAlive, requireAuth, parentId, enabled)
         values (#{url}, #{path}, #{component}, #{name}, #{iconcls}, #{keepalive}, #{requireauth}, #{parentid}, #{enabled})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update trader.menu
+        update menu
         <set>
             <if test="url != null and url != ''">
                 url = #{url},
@@ -194,7 +194,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from trader.menu where id = #{id}
+        delete from menu where id = #{id}
     </delete>
 
 </mapper>

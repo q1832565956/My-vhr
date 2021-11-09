@@ -80,6 +80,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> getAll(String eName,Long page,Long pageSize) {
+        if (pageSize==null&&page==null)
+            return this.employeeDao.selectAll(eName,null,null);
         long offset = (page - 1) * pageSize;
         return this.employeeDao.selectAll(eName,offset,pageSize);
     }

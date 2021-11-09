@@ -15,7 +15,7 @@
     <select id="queryById" resultMap="BaseResultMap">
         select
           id, eid, trainDate, trainContent, remark
-        from trader.employeetrain
+        from employeetrain
         where id = #{id}
     </select>
 
@@ -23,7 +23,7 @@
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
           id, eid, trainDate, trainContent, remark
-        from trader.employeetrain
+        from employeetrain
         limit #{offset}, #{limit}
     </select>
 
@@ -31,7 +31,7 @@
     <select id="queryAll" resultMap="BaseResultMap">
         select
           id, eid, trainDate, trainContent, remark
-        from trader.employeetrain
+        from employeetrain
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -53,13 +53,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into trader.employeetrain(eid, trainDate, trainContent, remark)
+        insert into employeetrain(eid, trainDate, trainContent, remark)
         values (#{eid}, #{traindate}, #{traincontent}, #{remark})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update trader.employeetrain
+        update employeetrain
         <set>
             <if test="eid != null">
                 eid = #{eid},
@@ -79,7 +79,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from trader.employeetrain where id = #{id}
+        delete from employeetrain where id = #{id}
     </delete>
 
 </mapper>

@@ -33,7 +33,7 @@
     <select id="queryById" resultMap="BaseResultMap">
         select
           id, name, parentId, depPath, enabled, isParent
-        from trader.department
+        from department
         where id = #{id}
     </select>
 
@@ -41,7 +41,7 @@
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
           id, name, parentId, depPath, enabled, isParent
-        from trader.department
+        from department
         limit #{offset}, #{limit}
     </select>
 
@@ -49,7 +49,7 @@
     <select id="queryAll" resultMap="BaseResultMap">
         select
           id, name, parentId, depPath, enabled, isParent
-        from trader.department
+        from department
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -74,13 +74,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into trader.department(name, parentId, depPath, enabled, isParent)
+        insert into department(name, parentId, depPath, enabled, isParent)
         values (#{name}, #{parentid}, #{deppath}, #{enabled}, #{isparent})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update trader.department
+        update department
         <set>
             <if test="name != null and name != ''">
                 name = #{name},
@@ -103,7 +103,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from trader.department where id = #{id}
+        delete from department where id = #{id}
     </delete>
 
 </mapper>

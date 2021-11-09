@@ -13,7 +13,7 @@
     <select id="queryById" resultMap="BaseResultMap">
         select
           id, name, nameZh
-        from trader.role
+        from role
         where id = #{id}
     </select>
 
@@ -21,7 +21,7 @@
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
           id, name, nameZh
-        from trader.role
+        from role
         limit #{offset}, #{limit}
     </select>
 
@@ -29,7 +29,7 @@
     <select id="queryAll" resultMap="BaseResultMap">
         select
           id, name, nameZh
-        from trader.role
+        from role
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -45,13 +45,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into trader.role(name, nameZh)
+        insert into role(name, nameZh)
         values (#{name}, #{namezh})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update trader.role
+        update role
         <set>
             <if test="name != null and name != ''">
                 name = #{name},
@@ -65,7 +65,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from trader.role where id = #{id}
+        delete from role where id = #{id}
     </delete>
 
     

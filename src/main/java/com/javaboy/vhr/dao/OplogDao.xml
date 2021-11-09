@@ -14,7 +14,7 @@
     <select id="queryById" resultMap="BaseResultMap">
         select
           id, addDate, operate, hrid
-        from trader.oplog
+        from oplog
         where id = #{id}
     </select>
 
@@ -22,7 +22,7 @@
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
           id, addDate, operate, hrid
-        from trader.oplog
+        from oplog
         limit #{offset}, #{limit}
     </select>
 
@@ -30,7 +30,7 @@
     <select id="queryAll" resultMap="BaseResultMap">
         select
           id, addDate, operate, hrid
-        from trader.oplog
+        from oplog
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -49,13 +49,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into trader.oplog(addDate, operate, hrid)
+        insert into oplog(addDate, operate, hrid)
         values (#{adddate}, #{operate}, #{hrid})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update trader.oplog
+        update oplog
         <set>
             <if test="adddate != null">
                 addDate = #{adddate},
@@ -72,7 +72,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from trader.oplog where id = #{id}
+        delete from oplog where id = #{id}
     </delete>
 
 </mapper>

@@ -2,7 +2,9 @@ package com.javaboy.vhr.controller.emp.basic;
 
 import com.javaboy.vhr.entity.*;
 import com.javaboy.vhr.service.*;
+import com.javaboy.vhr.utils.POIUtils;
 import javafx.beans.DefaultProperty;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -90,5 +92,11 @@ public class EmployeeController {
     public List<Politicsstatus> getPoliticsStatus(){
         return politicsstatusService.queryAll();
 
+    }
+    @GetMapping("/export")
+    public ResponseEntity<Byte[]> exportData(){
+        List<Employee> employees = employeeService.getAll(null, null, null);
+
+        return POIUtils.employee2Execl(employees);
     }
 }

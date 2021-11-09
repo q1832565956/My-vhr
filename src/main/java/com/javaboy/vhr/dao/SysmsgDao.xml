@@ -15,7 +15,7 @@
     <select id="queryById" resultMap="BaseResultMap">
         select
           id, mid, type, hrid, state
-        from trader.sysmsg
+        from sysmsg
         where id = #{id}
     </select>
 
@@ -23,7 +23,7 @@
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
           id, mid, type, hrid, state
-        from trader.sysmsg
+        from sysmsg
         limit #{offset}, #{limit}
     </select>
 
@@ -31,7 +31,7 @@
     <select id="queryAll" resultMap="BaseResultMap">
         select
           id, mid, type, hrid, state
-        from trader.sysmsg
+        from sysmsg
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -53,13 +53,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into trader.sysmsg(mid, type, hrid, state)
+        insert into sysmsg(mid, type, hrid, state)
         values (#{mid}, #{type}, #{hrid}, #{state})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update trader.sysmsg
+        update sysmsg
         <set>
             <if test="mid != null">
                 mid = #{mid},
@@ -79,7 +79,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from trader.sysmsg where id = #{id}
+        delete from sysmsg where id = #{id}
     </delete>
 
 </mapper>
