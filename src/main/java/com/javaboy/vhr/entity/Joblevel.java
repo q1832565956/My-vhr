@@ -2,6 +2,7 @@ package com.javaboy.vhr.entity;
 
 import java.util.Date;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * (Joblevel)实体类
@@ -24,6 +25,25 @@ public class Joblevel implements Serializable {
     
     private Object enabled;
 
+    public Joblevel() {
+    }
+
+    public Joblevel(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Joblevel joblevel = (Joblevel) o;
+        return name.equals(joblevel.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 
     public Integer getId() {
         return id;

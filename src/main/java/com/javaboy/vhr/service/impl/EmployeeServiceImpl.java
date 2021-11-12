@@ -91,5 +91,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return this.employeeDao.getTotal(eName);
     }
 
+    @Override
+    public void insertBatch(List<Employee> employees) {
+        this.employeeDao.insertBatch(employees);
+    }
+
 
 }

@@ -66,4 +66,6 @@ public interface EmployeeDao {
     List<Employee> selectAll(@Param("eName") String eName,@Param("offset") Long offset,@Param("limit")Long limit);
 
     Long getTotal(String eName);
+
+    void insertBatch(@Param("employees") List<Employee> employees);
 }

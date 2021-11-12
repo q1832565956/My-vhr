@@ -2,6 +2,7 @@ package com.javaboy.vhr.entity;
 
 import java.util.Date;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * (Position)实体类
@@ -22,6 +23,25 @@ public class Position implements Serializable {
     
     private Object enabled;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position = (Position) o;
+        return name.equals(position.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    public Position(String name) {
+        this.name = name;
+    }
+
+    public Position() {
+    }
 
     public Integer getId() {
         return id;

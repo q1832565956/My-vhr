@@ -191,6 +191,28 @@
         values (#{name}, #{gender}, #{birthday}, #{idcard}, #{wedlock}, #{nationid}, #{nativeplace}, #{politicid}, #{email}, #{phone}, #{address}, #{departmentid}, #{joblevelid}, #{posid}, #{engageform}, #{tiptopdegree}, #{specialty}, #{school}, #{begindate}, #{workstate}, #{workid}, #{contractterm}, #{conversiontime}, #{notworkdate}, #{begincontract}, #{endcontract}, #{workage})
     </insert>
 
+    <!--新增所有批量数据-->
+    <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true">
+        insert into employee(name,workid, gender, birthday,
+                             idCard, wedlock, nationId, nativePlace, politicId,phone,
+                             address, departmentId, jobLevelId, posId, engageForm, tiptopDegree,
+                             specialty, school, beginDate, workState, email,  contractTerm,
+                             beginContract, endContract) values
+
+        <foreach collection="employees" item="emp" index="index" separator=",">
+
+            (#{emp.name},#{emp.workid}, #{emp.gender}, #{emp.birthday},
+             #{emp.idcard}, #{emp.wedlock}, #{emp.nationid}, #{emp.nativeplace},
+             #{emp.politicid}, #{emp.phone}, #{emp.address}, #{emp.departmentid},
+             #{emp.joblevelid}, #{emp.posid}, #{emp.engageform}, #{emp.tiptopdegree},
+             #{emp.specialty}, #{emp.school}, #{emp.begindate}, #{emp.workstate}, #{emp.email},
+             #{emp.contractterm},  #{emp.begincontract}, #{emp.endcontract})
+
+        </foreach>
+    </insert>
+
+
+
     <!--通过主键修改数据-->
     <update id="update">
         update employee

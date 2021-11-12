@@ -1,6 +1,7 @@
 package com.javaboy.vhr.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * (Politicsstatus)实体类
@@ -15,6 +16,25 @@ public class Politicsstatus implements Serializable {
     
     private String name;
 
+    public Politicsstatus() {
+    }
+
+    public Politicsstatus(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Politicsstatus that = (Politicsstatus) o;
+        return name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 
     public Integer getId() {
         return id;

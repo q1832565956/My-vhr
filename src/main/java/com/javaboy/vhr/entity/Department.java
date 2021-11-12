@@ -3,6 +3,7 @@ package com.javaboy.vhr.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * (Department)实体类
@@ -29,6 +30,26 @@ public class Department implements Serializable {
 
 
     private Integer result;
+
+    public Department(String name) {
+        this.name = name;
+    }
+
+    public Department() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Department that = (Department) o;
+        return name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 
     private List<Department> children = new ArrayList<>();
 

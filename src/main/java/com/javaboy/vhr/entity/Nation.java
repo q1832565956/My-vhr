@@ -1,6 +1,7 @@
 package com.javaboy.vhr.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * (Nation)实体类
@@ -15,6 +16,25 @@ public class Nation implements Serializable {
     
     private String name;
 
+    public Nation(String name) {
+        this.name = name;
+    }
+
+    public Nation() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Nation nation = (Nation) o;
+        return name.equals(nation.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 
     public Integer getId() {
         return id;

@@ -63,4 +63,6 @@ public interface EmployeeService {
 
 
     Long getTotal(String eName);
+
+    void insertBatch(List<Employee> employees);
 }

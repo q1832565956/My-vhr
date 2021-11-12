@@ -6,9 +6,13 @@ import com.javaboy.vhr.utils.POIUtils;
 import javafx.beans.DefaultProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * (Employee)表控制层
@@ -98,5 +102,23 @@ public class EmployeeController {
         List<Employee> employees = employeeService.getAll(null, null, null);
 
         return POIUtils.employee2Execl(employees);
+    }
+
+    @PostMapping("/upload")
+    public  RespBean  uploadData(@RequestParam ("file")MultipartFile file){
+        /*File newFile = new File("D:\\run\\testfile");
+        if (!newFile.exists())
+            newFile.mkdirs();
+        String originalFilename = file.getOriginalFilename();
+        String newFileName= UUID.randomUUID().toString() + originalFilename;
+        file.transferTo(new File(newFile,newFileName));*/
+        List<Employee> employees =POIUtils.employee2UploadExecl(file,getJoblevels(),getPositions(),getNations(),getDepartments(),getPoliticsStatus());
+        for (Employee employee : employees) {
+            System.out.println(employee.toString());
+        }
+        if (!employees.isEmpty()){
+            employeeService.insertBatch(employees);
+        }
+        return RespBean.ok("上传成功！");
     }
 }
