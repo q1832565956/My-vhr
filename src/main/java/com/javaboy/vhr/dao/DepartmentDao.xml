@@ -6,6 +6,8 @@
         <!--@Table department-->
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="value" column="id" jdbcType="INTEGER"/>
+        <result property="label" column="name" jdbcType="VARCHAR"/>
         <result property="parentid" column="parentId" jdbcType="INTEGER"/>
         <result property="deppath" column="depPath" jdbcType="VARCHAR"/>
         <result property="enabled" column="enabled" jdbcType="OTHER"/>
@@ -16,12 +18,11 @@
         <collection property="children" ofType="com.javaboy.vhr.entity.Department"
                     select="com.javaboy.vhr.dao.DepartmentDao.getDepartmentByParentId" column="id"></collection>
     </resultMap>
-    
+
     <!--递归查询树-->
     <select id="getDepartmentByParentId" resultMap="ResultMapDepartment" >
         select * from department where parentid=#{pId};
     </select>
-
 
     <select id="addDept" statementType="CALLABLE">
         call addDep(#{name,mode=IN,jdbcType=VARCHAR},#{parentid,mode=IN,jdbcType=INTEGER},#{enabled,mode=IN,jdbcType=OTHER},

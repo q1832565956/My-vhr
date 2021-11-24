@@ -91,6 +91,15 @@ public class EmployeeController {
         return departmentService.queryAll();
 
     }
+    /**
+     * 高级查询-部门数据
+     * @return
+     */
+    @GetMapping("/deptmenu")
+    public List<Department>  getDepartmentByMenu(){
+        return departmentService.getDepartmentByParentId(-1);
+    }
+
 
     @GetMapping("/politic")
     public List<Politicsstatus> getPoliticsStatus(){
